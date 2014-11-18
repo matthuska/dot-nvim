@@ -1,0 +1,8 @@
+# #!/bin/bash
+snippet array
+	${1}=( ${2} ${3} )
+	
+snippet foreach
+	for ${1} in ${${2}[@]}; do
+		${3:#statements}
+	done

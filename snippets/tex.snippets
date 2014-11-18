@@ -1,0 +1,11 @@
+snippet frame frame environment
+	\begin{frame}[${1:t}]{${2:title}}
+		${0}
+	\end{frame}
+
+snippet fullbackground
+	{
+	\usebackgroundtemplate{\includegraphics[height=\paperheight]{${1:image}}}
+	\begin{frame}{}
+	\end{frame}
+	}

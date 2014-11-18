@@ -1,0 +1,13 @@
+# #!/usr/bin/env Rscript
+snippet lib
+	library(${1})
+	${2}
+
+snippet for
+	for (${1:i} in ${2}) {
+	  ${3}
+	}
+
+snippet error
+	options(error = recover)
+	${1}
