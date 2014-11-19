@@ -26,14 +26,16 @@ NeoBundle 'msanders/snipmate.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Valloric/YouCompleteMe'
-" Dev version of vim-r-plugin
+NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : './install.sh --clang-completer'}}
 NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
-NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 "NeoBundle 'Shougo/neosnippet.vim'
 "NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'kikijump/tslime.vim'
+NeoBundle 'jgdavey/tslime.vim'
+NeoBundle 'scrooloose/nerdtree'
 "NeoBundle 'flazz/vim-colorschemes'
 " Wanted to use this with R but it is far too slow
 "NeoBundle 'scrooloose/syntastic'
@@ -51,6 +53,11 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+
+" Tslime settings
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 " Syntastic settings for R
 "let g:syntastic_r_checkers = ['lint']
