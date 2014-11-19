@@ -9,11 +9,13 @@ if has('vim_starting')
   set nocompatible               " Be iMproved
 
   " Required:
-  set runtimepath+=/home/huska/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/home/huska/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
+
+let g:neobundle#types#git#default_protocol = 'git'
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -28,10 +30,13 @@ NeoBundle 'Valloric/YouCompleteMe'
 " Dev version of vim-r-plugin
 NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
+NeoBundle 'Shougo/vimproc.vim'
 "NeoBundle 'Shougo/neosnippet.vim'
 "NeoBundle 'Shougo/neosnippet-snippets'
-"NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 "NeoBundle 'flazz/vim-colorschemes'
+" Wanted to use this with R but it is far too slow
+"NeoBundle 'scrooloose/syntastic'
 
 " You can specify revision/branch/tag.
 "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -46,6 +51,10 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+
+" Syntastic settings for R
+"let g:syntastic_r_checkers = ['lint']
+"let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
 
 " Ctrl-p settings
 let g:ctrlp_custom_ignore = {
