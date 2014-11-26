@@ -33,15 +33,10 @@ NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 "NeoBundle 'Shougo/neosnippet.vim'
 "NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'kikijump/tslime.vim'
 NeoBundle 'jgdavey/tslime.vim'
 NeoBundle 'scrooloose/nerdtree'
-"NeoBundle 'flazz/vim-colorschemes'
 " Wanted to use this with R but it is far too slow
-"NeoBundle 'scrooloose/syntastic'
-
-" You can specify revision/branch/tag.
-"NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+NeoBundle 'scrooloose/syntastic'
 
 " Required:
 call neobundle#end()
@@ -59,35 +54,34 @@ vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
 
-" Syntastic settings for R
-"let g:syntastic_r_checkers = ['lint']
-"let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
+" Syntastic settings for R.
+" Disable autocheck on save
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+nnoremap <leader>sc :SyntasticCheck<CR>
+let g:syntastic_r_checkers = ['lint']
+let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
 
 " Ctrl-p settings
+"let g:ctrlp_user_command = 'find %s -type f ! -name "*.pdf" ! -name "*.'
+let g:ctrlp_max_files = 0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = {
-			\ 'dir': '\v[\/]\.(git|hg|svn)$',
-			\ 'file': '\v\.(so|bed|fasta|gz|bz2|fastq|bam|wig)$',
-			\ 'link': 'some_bad_symbolic_links',
+			\ 'dir': '\v[\/]\.(git|hg|svn|cache)$',
+			\ 'file': '\v\.(so|bed|fasta|gz|bz2|fastq|bam|wig|zip|rds|iso|jar|jpg|png|tif|pyc|pdf|doc|mp3)$',
+			\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 			\ }
-let g:ctrlp_user_command = 'find %s -type f'
+" This enables 'ag' but now the custom_ignore settings will not have any
+" effect. They'll need to be added to a separate .ag-ignore-type file.
+if executable("ag")
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " snipmate rebind to not stomp on YouCompleteMe
 "let g:snips_trigger_key = '<C-j>'
 let g:ycm_key_list_select_completion = []
 
-"set nocompatible
-""filetype plugin indent on
-"call pathogen#infect()
-"call pathogen#runtime_append_all_bundles()
-"filetype plugin indent on
-
-"set t_Co=16
-
-"syntax enable
-"set background=light
-"set background=dark
-"colorscheme solarized
 colorscheme desert
+set cursorline
 
 " Other handy things
 "set number
@@ -96,12 +90,12 @@ autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop
 
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-set listchars=tab:>-,trail:?,eol:$
-"nmap <silent> <leader>s :set nolist!<CR>
+"----------------------------------------------------------------------------
+" UI Settings
 
-" Custom status line... really just wanted to add Filetype
+" Make status line (airline) display all of the time
 set laststatus=2
-set ruler
+set listchars=tab:>-,trail:?,eol:$
 
 set wildmode=list:longest
 
@@ -116,8 +110,6 @@ set spellfile=~/.vim/dict.add
 map <f5>  i<C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR>-  
 map <f6>  i*** <<C-R>=strftime("%Y-%m-%d %a")<CR>><ESC>o<CR>-  
 
-"let vimrplugin_screenplugin = 1
-"let vimrplugin_screenplugin = 0
 let vimrplugin_assign = 0
 let g:tex_flavor='latex'
 
