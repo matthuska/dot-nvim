@@ -73,7 +73,7 @@ let g:ctrlp_custom_ignore = {
 " This enables 'ag' but now the custom_ignore settings will not have any
 " effect. They'll need to be added to a separate .ag-ignore-type file.
 if executable("ag")
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+	let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
 endif
 
 " snipmate rebind to not stomp on YouCompleteMe
@@ -83,19 +83,13 @@ let g:ycm_key_list_select_completion = []
 colorscheme desert
 set cursorline
 
-" Other handy things
-"set number
-"highlight LineNr      term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE 
-autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop=4
-
-autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 "----------------------------------------------------------------------------
 " UI Settings
 
 " Make status line (airline) display all of the time
 set laststatus=2
-set listchars=tab:>-,trail:?,eol:$
+set listchars=tab:>-,trail:?
 
 set wildmode=list:longest
 
@@ -171,8 +165,11 @@ fun! <SID>StripTrailingWhitespaces()
 	call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,python,r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+" Various autocommands
+autocmd FileType c,cpp,java,php,ruby,python,r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 " Markdown-related goodness
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
 autocmd FileType markdown set autoindent
