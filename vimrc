@@ -15,7 +15,8 @@ endif
 " Required:
 call neobundle#begin(expand('~/.vim/bundle'))
 
-let g:neobundle#types#git#default_protocol = 'git'
+" Shouldn't be needed anymore now that they fixed MPI's git
+"let g:neobundle#types#git#default_protocol = 'git'
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -64,6 +65,7 @@ let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indent
 " Ctrl-p settings
 "let g:ctrlp_user_command = 'find %s -type f ! -name "*.pdf" ! -name "*.'
 let g:ctrlp_max_files = 0
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = {
 			\ 'dir': '\v[\/]\.(git|hg|svn|cache)$',
@@ -90,6 +92,7 @@ set cursorline
 " Make status line (airline) display all of the time
 set laststatus=2
 set listchars=tab:>-,trail:?
+let g:airline_powerline_fonts = 1
 
 set wildmode=list:longest
 
