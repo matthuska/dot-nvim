@@ -158,6 +158,15 @@ hi MatchParen cterm=underline,bold ctermbg=none ctermfg=none
 " current directory is always matching the
 " content of the active window
 "set autochdir
+
+" Place the backup and swap files in another directory:
+if isdirectory($HOME . '/.vim/tmp') == 0
+	:silent !mkdir -p ~/.vim/tmp/undo ~/.vim/tmp/backup ~/.vim/tmp/swp >/dev/null 2>&1
+endif
+set undodir^=~/.vim/tmp/undo//
+set backupdir^=~/.vim/tmp/backup//
+set directory^=~/.vim/tmp/swp//
+
 " --------------------------------------------------------------------------
 
 " Remove trailing whitespace from certain files on save
