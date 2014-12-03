@@ -27,7 +27,8 @@ NeoBundle 'msanders/snipmate.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : './install.sh --clang-completer'}}
+NeoBundle 'Valloric/YouCompleteMe'
+"NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : './install.sh --clang-completer'}}
 NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
@@ -64,6 +65,8 @@ let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indent
 
 " Ctrl-p settings
 "let g:ctrlp_user_command = 'find %s -type f ! -name "*.pdf" ! -name "*.'
+" Search most recently used files first
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_max_files = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
