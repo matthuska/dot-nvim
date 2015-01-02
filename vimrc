@@ -83,7 +83,7 @@ endif
 let g:ycm_key_list_select_completion = []
 
 colorscheme desert
-set cursorline
+"set cursorline
 
 
 "----------------------------------------------------------------------------
@@ -135,7 +135,7 @@ runtime macros/matchit.vim
 " smarter search. Case sensitive only if capital in search
 set ignorecase 
 set smartcase
-set scrolloff=3
+set scrolloff=8
 
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
