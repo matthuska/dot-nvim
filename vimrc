@@ -17,6 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle'))
 
 " Shouldn't be needed anymore now that they fixed MPI's git
 "let g:neobundle#types#git#default_protocol = 'git'
+let g:neobundle#install_process_timeout = 1800
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -27,8 +28,8 @@ NeoBundle 'msanders/snipmate.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Valloric/YouCompleteMe'
-"NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : './install.sh --clang-completer'}}
+"NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'bash install.sh --clang-completer'}}
 NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
@@ -39,6 +40,8 @@ NeoBundle 'jgdavey/tslime.vim'
 NeoBundle 'scrooloose/nerdtree'
 " Wanted to use this with R but it is far too slow
 NeoBundle 'scrooloose/syntastic'
+" Totally bugged right now
+"NeoBundle 'severin-lemaignan/vim-minimap'
 
 " Required:
 call neobundle#end()
@@ -57,11 +60,24 @@ nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
 
 " Syntastic settings for R.
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " Disable autocheck on save
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
-nnoremap <leader>sc :SyntasticCheck<CR>
-let g:syntastic_r_checkers = ['lint']
-let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+"nnoremap <leader>sc :SyntasticCheck<CR>
+"let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
+let g:syntastic_enable_r_lintr_checker = 1
+"let g:syntastic_r_checkers = 1
+let g:syntastic_r_checkers = ['lintr']
+" Disable the object checker because it executes code. Not safe for when I
+" open untrested code
+let g:syntastic_r_lintr_linters = "with_defaults(object_usage_linter = NULL, object_camel_case_linter = NULL)"
 
 " Ctrl-p settings
 "let g:ctrlp_user_command = 'find %s -type f ! -name "*.pdf" ! -name "*.'
@@ -107,7 +123,7 @@ set pastetoggle=<F12>
 set spellfile=~/.vim/dict.add
 
 " Insert time using <F5> in insert mode
-map <f5>  i<C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR>-  
+map <f5>  O<C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR><CR><ESC>ka- 
 map <f6>  i*** <<C-R>=strftime("%Y-%m-%d %a")<CR>><ESC>o<CR>-  
 
 let vimrplugin_assign = 0
@@ -188,5 +204,9 @@ autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 " Markdown-related goodness
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
 autocmd FileType markdown set autoindent
+
+" Highlight lines longer than 80 chars
+hi ColorColumn ctermbg=235
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Lines added by the Vim-R-plugin command :RpluginConfig (2014-Oct-30 14:47):
