@@ -17,7 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle'))
 
 " Shouldn't be needed anymore now that they fixed MPI's git
 "let g:neobundle#types#git#default_protocol = 'git'
-let g:neobundle#install_process_timeout = 1800
+"let g:neobundle#install_process_timeout = 1800
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -30,7 +30,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
 "NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'bash install.sh --clang-completer'}}
-NeoBundle 'jcfaria/Vim-R-plugin'
+"NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 "NeoBundle 'Shougo/neosnippet.vim'
@@ -69,7 +69,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " Disable autocheck on save
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
 "nnoremap <leader>sc :SyntasticCheck<CR>
 "let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
 let g:syntastic_enable_r_lintr_checker = 1
@@ -123,7 +123,7 @@ set pastetoggle=<F12>
 set spellfile=~/.vim/dict.add
 
 " Insert time using <F5> in insert mode
-map <f5>  O<C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR><CR><ESC>ka- 
+map <f5>  O<C-R><C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR><CR><ESC>ka- 
 map <f6>  i*** <<C-R>=strftime("%Y-%m-%d %a")<CR>><ESC>o<CR>-  
 
 let vimrplugin_assign = 0

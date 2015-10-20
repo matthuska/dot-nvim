@@ -3,9 +3,28 @@ snippet frame frame environment
 		${0}
 	\end{frame}
 
+snippet bframe blank frame environment
+	\begin{frame}
+		${1}
+	\end{frame}
+
+snippet center 
+	\begin{center}
+		${1}
+	\end{center}
+
 snippet fullbackground
 	{
 	\usebackgroundtemplate{\includegraphics[height=\paperheight]{${1:image}}}
 	\begin{frame}{}
 	\end{frame}
 	}
+
+snippet black
+	% Black slide (http://tex.stackexchange.com/questions/14796/beamer-blank-black-frame)
+	\bgroup
+	\setbeamercolor{background canvas}{bg=black}
+	\begin{frame}[plain]{}
+	\end{frame}
+	\egroup
+
