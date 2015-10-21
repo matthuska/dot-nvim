@@ -17,7 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle'))
 
 " Shouldn't be needed anymore now that they fixed MPI's git
 "let g:neobundle#types#git#default_protocol = 'git'
-"let g:neobundle#install_process_timeout = 1800
+let g:neobundle#install_process_timeout = 1800
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -29,7 +29,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
 "NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'bash install.sh --clang-completer'}}
+NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'python install.py'}}
 "NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
@@ -196,6 +196,27 @@ fun! <SID>StripTrailingWhitespaces()
 	call cursor(l, c)
 endfun
 
+" Convenience functions for snippts. F12 to edit snippets for the current
+" filetype
+fun! OpenCurrentSnippets()
+	let ft=&filetype
+	"echom ft
+	let ftfull="~/.vim/snippets/" . ft . ".snippets"
+	echom ftfull
+	"let g:snipfile=expand("~") . ".vim/snippets/" . ft . ".snippets"
+	"echom g:snipfile
+	execute "split " . ftfull
+endfun
+
+map <f12> :call OpenCurrentSnippets()<cr>
+" Auto reload all snippets on snippet buffer save
+autocmd BufWritePost *.snippets :call ReloadAllSnippets()
+map <f9> :e ~/.vim/vimrc<cr>
+" http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
 
 " Various autocommands
 autocmd FileType c,cpp,java,php,ruby,python,r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
