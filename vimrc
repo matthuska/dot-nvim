@@ -219,6 +219,7 @@ augroup myvimrc
 augroup END
 
 " Various autocommands
+autocmd FileType c,cpp set ts=4
 autocmd FileType c,cpp,java,php,ruby,python,r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
