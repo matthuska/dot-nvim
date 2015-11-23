@@ -149,6 +149,10 @@ nnoremap ` '
 let mapleader = ","
 let maplocalleader = "\\"
 set history=1000
+
+nnoremap <leader>w g<C-g>
+vnoremap <leader>w g<C-g>
+
 " allows % to switch between if/elsif/else/etc.
 runtime macros/matchit.vim
 " smarter search. Case sensitive only if capital in search
@@ -171,6 +175,8 @@ set incsearch " ...dynamically as they are typed.
 " Highlight matching braces with an underline
 " http://design.liberta.co.za/articles/customizing-disabling-vim-matching-parenthesis-highlighting/
 hi MatchParen cterm=underline,bold ctermbg=none ctermfg=none 
+hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none 
+hi Search cterm=bold ctermbg=DarkGrey ctermfg=none 
 " current directory is always matching the
 " content of the active window
 "set autochdir
@@ -205,7 +211,7 @@ fun! OpenCurrentSnippets()
 	echom ftfull
 	"let g:snipfile=expand("~") . ".vim/snippets/" . ft . ".snippets"
 	"echom g:snipfile
-	execute "split " . ftfull
+	execute "vsplit " . ftfull
 endfun
 
 map <f12> :call OpenCurrentSnippets()<cr>
@@ -224,7 +230,8 @@ autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 " Markdown-related goodness
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
-autocmd FileType markdown set autoindent
+autocmd FileType markdown set autoindent spell
+autocmd FileType tex set spell
 
 " Highlight lines longer than 80 chars
 hi ColorColumn ctermbg=235

@@ -28,3 +28,27 @@ snippet black
 	\end{frame}
 	\egroup
 
+snippet twocolumn
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+		\end{column}
+		\begin{column}{.5\textwidth}
+		\end{column}
+	\end{columns}
+
+snippet hiddencite
+	\phantom{\cite{${1}}}
+
+
+snippet fig
+	\includegraphics[width=\textwidth,height=0.9\paperheight,keepaspectratio]{figures/${1}}
+
+snippet subsec
+	\begin{frame}
+		\begin{center}
+			\scalebox{1.5}{${1}}
+		\end{center}
+	\end{frame}
+
+snippet include
+	\verbatiminput{${1}}
