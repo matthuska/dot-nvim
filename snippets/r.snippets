@@ -14,6 +14,7 @@ snippet error
 
 snippet args
 	library(optparse)
+	library(digest)
 
 	option_list <- list(
 			make_option(c("-o", "--organism"), default="mm",
@@ -24,10 +25,9 @@ snippet args
 									help="Set the random seed at the beginning of the script")
 			)
 	args <- parse_args(OptionParser(option_list = option_list))
-	set.seed(args$seed)
-
-	# conf list will contain all settings for this run
 	conf <- args
+	conf$id <- substr(digest(args), 1, 8)
+	set.seed(args$seed)
 
 snippet base
 	#!/usr/bin/env Rscript

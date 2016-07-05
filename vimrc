@@ -25,7 +25,7 @@ NeoBundle 'msanders/snipmate.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'python install.py'}}
+NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
 "NeoBundle 'jcfaria/Vim-R-plugin'
 NeoBundle 'jalvesaq/VimCom'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
@@ -33,6 +33,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'jgdavey/tslime.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+NeoBundle 'godlygeek/tabular'
 " Totally bugged right now
 "NeoBundle 'severin-lemaignan/vim-minimap'
 
@@ -103,9 +105,6 @@ let g:ycm_key_list_select_completion = []
 " Vim-R-Plugin
 let vimrplugin_assign = 0
 
-" ??
-let g:tex_flavor='latex'
-
 " Snippets
 " Convenience functions for snippts. F12 to edit snippets for the current
 " filetype
@@ -121,6 +120,12 @@ map <f12> :call OpenCurrentSnippets()<cr>
 " Auto reload all snippets on snippet buffer save
 autocmd BufWritePost *.snippets :call ReloadAllSnippets()
 
+" LatexBox
+let g:tex_flavor='latex'
+let g:LatexBox_quickfix=1
+let g:LatexBox_latexmk_async=1
+let g:LatexBox_autojump=1
+let g:LatexBox_show_warnings=0
 
 "------------------------------------------------------------------------------
 " UI Settings
@@ -231,3 +236,5 @@ autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
 autocmd FileType markdown set autoindent spell
 autocmd FileType tex set spell
+" Useful for thesis writing. Check parent dir for Makefile.
+autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C ..; fi'
