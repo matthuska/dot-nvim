@@ -1,53 +1,78 @@
+""------------------------------------------------------------------------------
+"" Settings for neovim
+""------------------------------------------------------------------------------
+"" Package management with vim-plug
+"" 
+"" Install with:
+"" curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+""    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+""
+"" Autoinstall if not already installed:
+if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
+  autocmd VimEnter * PlugInstall                                                                                                      
+endif    
+
+call plug#begin()
+Plug 'msanders/snipmate.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'bling/vim-airline'
+Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
+"Plug 'jcfaria/Vim-R-plugin'
+Plug 'jalvesaq/VimCom'
+Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
+Plug 'tpope/vim-fugitive'
+Plug 'jgdavey/tslime.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'godlygeek/tabular'
+call plug#end()
+
+"if has('vim_starting')
+"  set nocompatible               " Be iMproved
+"
+"  set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
+"endif
+"
+"call neobundle#begin(expand('~/.config/nvim/bundle'))
+"let g:neobundle#install_process_timeout = 1800
+"
+"" Let NeoBundle manage NeoBundle
+"" Required:
+"NeoBundleFetch 'Shougo/neobundle.vim'
+"
+"" Add or remove your Bundles here:
+"NeoBundle 'msanders/snipmate.vim'
+"NeoBundle 'kien/ctrlp.vim'
+"NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'bling/vim-airline'
+"NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
+""NeoBundle 'jcfaria/Vim-R-plugin'
+"NeoBundle 'jalvesaq/VimCom'
+"NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
+"NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'jgdavey/tslime.vim'
+"NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+"NeoBundle 'godlygeek/tabular'
+"" Totally bugged right now
+""NeoBundle 'severin-lemaignan/vim-minimap'
+"
+"" Required:
+"call neobundle#end()
+"
+"" Required:
+"filetype plugin indent on
+"
+"" If there are uninstalled bundles found on startup,
+"" this will conveniently prompt you to install them.
+"NeoBundleCheck
+
 "------------------------------------------------------------------------------
-" Package management
-" 
-" Install with:
-" curl \
-" https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh \
-" | sh
-" or
-" git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('~/.vim/bundle'))
-let g:neobundle#install_process_timeout = 1800
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-NeoBundle 'msanders/snipmate.vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
-"NeoBundle 'jcfaria/Vim-R-plugin'
-NeoBundle 'jalvesaq/VimCom'
-NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'jgdavey/tslime.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-NeoBundle 'godlygeek/tabular'
-" Totally bugged right now
-"NeoBundle 'severin-lemaignan/vim-minimap'
-
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
 " Misc
 syntax on
 filetype on
@@ -111,7 +136,7 @@ let vimrplugin_assign = 0
 fun! OpenCurrentSnippets()
 	let ft=&filetype
 	"echom ft
-	let ftfull="~/.vim/snippets/" . ft . ".snippets"
+	let ftfull="~/.config/nvim/snippets/" . ft . ".snippets"
 	echom ftfull
 	execute "vsplit " . ftfull
 endfun
@@ -208,12 +233,12 @@ set directory^=~/.vim/tmp/swp//
 
 " Convenience functions for editing vimrc. Easy open (F9) and auto reload on
 " save.
-map <f9> :e ~/.vim/vimrc<cr>
+map <f9> :e ~/.concfig/nvim/init.vim<cr>
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
 augroup myvimrc
     au!
     " Reload airline (twice) colors so that the status line isn't blanked out
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif | AirlineRefresh | AirlineRefresh
+    au BufWritePost init.vim,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif | AirlineRefresh | AirlineRefresh
 augroup END
 
 " --------------------------------------------------------------------------
