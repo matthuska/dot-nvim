@@ -8,10 +8,9 @@
 ""    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ""
 "" Autoinstall if not already installed:
-if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
-  autocmd VimEnter * PlugInstall                                                                                                      
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
 endif    
 
 call plug#begin()
@@ -224,16 +223,16 @@ hi Search cterm=bold ctermbg=DarkGrey ctermfg=none
 "set autochdir
 
 " Place the backup and swap files in another directory:
-if isdirectory($HOME . '/.vim/tmp') == 0
-	:silent !mkdir -p ~/.vim/tmp/undo ~/.vim/tmp/backup ~/.vim/tmp/swp >/dev/null 2>&1
+if isdirectory($HOME . '/.cache/nvim/tmp') == 0
+	:silent !mkdir -p ~/.cache/nvim/tmp/undo ~/.cache/nvim/tmp/backup ~/.cache/nvim/tmp/swp >/dev/null 2>&1
 endif
-set undodir^=~/.vim/tmp/undo//
-set backupdir^=~/.vim/tmp/backup//
-set directory^=~/.vim/tmp/swp//
+set undodir^=~/.cache/nvim/tmp/undo//
+set backupdir^=~/.cache/nvim/tmp/backup//
+set directory^=~/.cache/nvim/tmp/swp//
 
 " Convenience functions for editing vimrc. Easy open (F9) and auto reload on
 " save.
-map <f9> :e ~/.concfig/nvim/init.vim<cr>
+map <f9> :e ~/.config/nvim/init.vim<cr>
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
 augroup myvimrc
     au!
