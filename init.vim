@@ -25,7 +25,8 @@ Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
 Plug 'jgdavey/tslime.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 call plug#end()
