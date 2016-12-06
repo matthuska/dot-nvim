@@ -29,6 +29,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
+Plug 'dpelle/vim-LanguageTool'
 call plug#end()
 
 "if has('vim_starting')
@@ -151,6 +152,9 @@ let g:LatexBox_quickfix=1
 let g:LatexBox_latexmk_async=1
 let g:LatexBox_autojump=1
 let g:LatexBox_show_warnings=0
+
+" vim-LanguageTool grammar checker
+let g:languagetool_jar='$HOME/opt/LanguageTool-3.5/languagetool-commandline.jar'
 
 "------------------------------------------------------------------------------
 " UI Settings
