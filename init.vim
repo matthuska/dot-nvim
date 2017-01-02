@@ -2,6 +2,8 @@
 "" Settings for neovim
 ""------------------------------------------------------------------------------
 "" Package management with vim-plug
+"" Upgrade vim-plug:      :PlugUpgrade
+"" Upgrade all packages:  :PlugUpdate
 "" 
 "" Install with:
 "" curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
@@ -31,47 +33,6 @@ Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
 call plug#end()
-
-"if has('vim_starting')
-"  set nocompatible               " Be iMproved
-"
-"  set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
-"endif
-"
-"call neobundle#begin(expand('~/.config/nvim/bundle'))
-"let g:neobundle#install_process_timeout = 1800
-"
-"" Let NeoBundle manage NeoBundle
-"" Required:
-"NeoBundleFetch 'Shougo/neobundle.vim'
-"
-"" Add or remove your Bundles here:
-"NeoBundle 'msanders/snipmate.vim'
-"NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'Lokaltog/vim-easymotion'
-"NeoBundle 'bling/vim-airline'
-"NeoBundle 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
-""NeoBundle 'jcfaria/Vim-R-plugin'
-"NeoBundle 'jalvesaq/VimCom'
-"NeoBundle 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
-"NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'jgdavey/tslime.vim'
-"NeoBundle 'scrooloose/nerdtree'
-"NeoBundle 'scrooloose/syntastic'
-"NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-"NeoBundle 'godlygeek/tabular'
-"" Totally bugged right now
-""NeoBundle 'severin-lemaignan/vim-minimap'
-"
-"" Required:
-"call neobundle#end()
-"
-"" Required:
-"filetype plugin indent on
-"
-"" If there are uninstalled bundles found on startup,
-"" this will conveniently prompt you to install them.
-"NeoBundleCheck
 
 "------------------------------------------------------------------------------
 " Misc
