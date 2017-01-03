@@ -32,6 +32,8 @@ Plug 'neomake/neomake'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
+" Show changed lines in the gutter using git
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 "------------------------------------------------------------------------------
