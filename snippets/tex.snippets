@@ -28,7 +28,7 @@ snippet black
 	\end{frame}
 	\egroup
 
-snippet twocolumn
+snippet 2col
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			${1}
@@ -54,3 +54,11 @@ snippet subsec
 
 snippet include
 	\verbatiminput{${1}}
+
+
+snippet ffig
+	\begin{frame}
+		\begin{center}
+			\includegraphics[width=\textwidth,height=0.9\paperheight,keepaspectratio]{${1}}
+		\end{center}
+	\end{frame}

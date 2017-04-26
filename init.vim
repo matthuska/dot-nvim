@@ -140,7 +140,27 @@ set wildmode=list:longest
 
 " Fix odd backspacing problems
 set backspace=indent,eol,start
-set spellfile=~/.vim/dict.add
+
+" Check current and previous directory for a custom dictionary file, else use
+" the common custom dictionary
+" Note: After manually editing dictionary, open it and run ":mkspell! %" to
+" rebuild .spl file
+function! SetSpellfile()
+	" Set the default location
+	setlocal spellfile=~/sync/homedir/vim/dict.en.utf-8.add
+
+	if filereadable("./dict.en.utf-8.add")
+		setlocal spellfile=./dict.en.utf-8.add
+	elseif filereadable("../dict.en.utf-8.add")
+		setlocal spellfile=../dict.en.utf-8.add
+	elseif !filereadable($HOME."/sync/homedir/vim/dict.en.utf-8.add")
+		silent !mkdir ~/sync/homedir/vim/ > /dev/null 2>&1
+		silent !touch ~/sync/homedir/vim/dict.en.utf-8.add
+	endif
+
+endfunction
+autocmd BufNewFile,BufRead * :call SetSpellfile()
+
 
 " Insert time using <F5> in insert mode
 map <f5>  O<C-R><C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR><CR><ESC>ka- 

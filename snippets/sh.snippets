@@ -6,3 +6,8 @@ snippet foreach
 	for ${1} in ${${2}[@]}; do
 		${3:#statements}
 	done
+
+snippet foreachi
+	for ${1} in "${!${2}[@]}"; do
+		${3:#statements}
+	done
