@@ -21,7 +21,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'bling/vim-airline'
 Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
-"Plug 'jcfaria/Vim-R-plugin'
 Plug 'jalvesaq/VimCom'
 Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
@@ -91,9 +90,6 @@ endif
 "let g:snips_trigger_key = '<C-j>'
 let g:ycm_key_list_select_completion = []
 
-" Vim-R-Plugin
-let vimrplugin_assign = 0
-
 " Snippets
 " Convenience functions for snippts. F12 to edit snippets for the current
 " filetype
@@ -122,7 +118,7 @@ let g:languagetool_jar='$HOME/opt/LanguageTool-3.5/languagetool-commandline.jar'
 "------------------------------------------------------------------------------
 " UI Settings
 
-colorscheme desert
+"colorscheme desert
 
 " Make status line (airline) display all of the time
 set laststatus=2
@@ -160,7 +156,6 @@ function! SetSpellfile()
 
 endfunction
 autocmd BufNewFile,BufRead * :call SetSpellfile()
-
 
 " Insert time using <F5> in insert mode
 map <f5>  O<C-R><C-R>=strftime("%Y-%m-%d (%A)")<CR><ESC>yypVr-o<CR><CR><ESC>ka- 
