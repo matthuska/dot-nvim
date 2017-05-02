@@ -33,6 +33,8 @@ Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
 " Show changed lines in the gutter using git
 Plug 'airblade/vim-gitgutter'
+" Simple latex folding
+Plug 'matze/vim-tex-fold'
 call plug#end()
 
 "------------------------------------------------------------------------------
