@@ -1,64 +1,27 @@
-snippet frame frame environment
-	\begin{frame}{${1:title}}
-		${0}
-	\end{frame}
-
-snippet bframe blank frame environment
-	\begin{frame}
-		${1}
-	\end{frame}
-
-snippet center 
-	\begin{center}
-		${1}
-	\end{center}
-
-snippet fullbackground
-	{
-		\usebackgroundtemplate{\includegraphics[height=\paperheight]{${1:image}}}
-		\begin{frame}{}
-		\end{frame}
+snippet tfigure Figure
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=\linewidth]{${1}}
+		\end{center}
+		\caption[short]{{\bf bolded}
+		Long caption
 	}
+	\label{${2}}
+	\end{figure}
 
-snippet black
-	% Black slide (http://tex.stackexchange.com/questions/14796/beamer-blank-black-frame)
-	\bgroup
-	\setbeamercolor{background canvas}{bg=black}
-	\begin{frame}[plain]{}
-	\end{frame}
-	\egroup
+snippet ttable Table
+	\begin{table*}[t]
+		\caption[short]{Long}
+		{ \footnotesize
+		\input{chapterx/tables/${1}}
+		}
+		\label{${2}}
+	\end{table*}
 
-snippet 2col
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			${1}
-		\end{column}
-		\begin{column}{.5\textwidth}
-			${2}
-		\end{column}
-	\end{columns}
+snippet tsidewaystable Table rotated 90 degrees
+	\begin{sidewaystable}
+		\caption[short]{{\bf bolded} Long}
+		\input{${1}}
+		\label{${2}}
+	\end{sidewaystable}
 
-snippet hiddencite
-	\phantom{\cite{${1}}}
-
-
-snippet fig
-	\includegraphics[width=\textwidth,height=0.9\paperheight,keepaspectratio]{${1}}
-
-snippet subsec
-	\begin{frame}
-		\begin{center}
-			\scalebox{1.5}{${1}}
-		\end{center}
-	\end{frame}
-
-snippet include
-	\verbatiminput{${1}}
-
-
-snippet ffig
-	\begin{frame}
-		\begin{center}
-			\includegraphics[width=\textwidth,height=0.9\paperheight,keepaspectratio]{${1}}
-		\end{center}
-	\end{frame}
