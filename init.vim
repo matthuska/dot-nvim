@@ -91,6 +91,7 @@ endif
 " snipmate rebind to not stomp on YouCompleteMe
 "let g:snips_trigger_key = '<C-j>'
 let g:ycm_key_list_select_completion = []
+let g:loaded_youcompleteme = 1
 
 " Snippets
 " Convenience functions for snippts. F12 to edit snippets for the current
@@ -115,7 +116,7 @@ let g:LatexBox_autojump=1
 let g:LatexBox_show_warnings=0
 
 " vim-LanguageTool grammar checker
-let g:languagetool_jar='$HOME/opt/LanguageTool-3.5/languagetool-commandline.jar'
+let g:languagetool_jar='$HOME/opt/LanguageTool/languagetool-commandline.jar'
 
 "------------------------------------------------------------------------------
 " UI Settings
