@@ -117,6 +117,7 @@ let g:LatexBox_show_warnings=0
 
 " vim-LanguageTool grammar checker
 let g:languagetool_jar='$HOME/opt/LanguageTool/languagetool-commandline.jar'
+let g:languagetool_disable_rules='DASH_RULE,WHITESPACE_RULE,EN_QUOTES,CURRENCY,EN_UNPAIRED_BRACKETS,COMMA_PARENTHESIS_WHITESPACE'
 
 "------------------------------------------------------------------------------
 " UI Settings
