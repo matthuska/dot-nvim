@@ -254,3 +254,8 @@ autocmd FileType tex set spell
 autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C ..; fi'
 " yaml files were being indented with 8 spaces, should be 2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Crazy settings for python indentation using tabs
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+autocmd FileType python set noet ci pi sts=0 sw=8 ts=8 list
+
