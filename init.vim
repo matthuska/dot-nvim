@@ -230,6 +230,10 @@ augroup myvimrc
     au BufWritePost init.vim,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif | AirlineRefresh | AirlineRefresh
 augroup END
 
+" Color 80th column
+set textwidth=80
+set colorcolumn=+1
+
 " --------------------------------------------------------------------------
 " Filetype specific settings
 
@@ -244,7 +248,7 @@ endfun
 
 " Various autocommands
 autocmd FileType c,cpp set ts=4
-autocmd FileType c,cpp,java,php,ruby,python,r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python,r,snakemake autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
@@ -257,5 +261,5 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Crazy settings for python indentation using tabs
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-autocmd FileType python set noet ci pi sts=0 sw=8 ts=8 list
+autocmd FileType python set noet ci pi sts=0 sw=8 ts=8
 
