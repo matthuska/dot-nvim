@@ -30,7 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'jgdavey/tslime.vim'
 Plug 'scrooloose/nerdtree'
 "Plug 'scrooloose/syntastic'
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
@@ -38,6 +38,8 @@ Plug 'dpelle/vim-LanguageTool'
 Plug 'airblade/vim-gitgutter'
 " Simple latex folding
 Plug 'matze/vim-tex-fold'
+" Python
+Plug 'w0rp/ale'
 call plug#end()
 
 "------------------------------------------------------------------------------
@@ -150,15 +152,15 @@ set backspace=indent,eol,start
 " rebuild .spl file
 function! SetSpellfile()
 	" Set the default location
-	setlocal spellfile=~/sync/homedir/vim/dict.en.utf-8.add
+	setlocal spellfile=~/.cache/nvim/dict.en.utf-8.add
 
 	if filereadable("./dict.en.utf-8.add")
 		setlocal spellfile=./dict.en.utf-8.add
 	elseif filereadable("../dict.en.utf-8.add")
 		setlocal spellfile=../dict.en.utf-8.add
-	elseif !filereadable($HOME."/sync/homedir/vim/dict.en.utf-8.add")
-		silent !mkdir ~/sync/homedir/vim/ > /dev/null 2>&1
-		silent !touch ~/sync/homedir/vim/dict.en.utf-8.add
+	elseif !filereadable($HOME."/.cache/nvim/dict.en.utf-8.add")
+		silent !mkdir -p ~/.cache/nvim/ > /dev/null 2>&1
+		silent !touch ~/.cache/nvim/dict.en.utf-8.add
 	endif
 
 endfunction
