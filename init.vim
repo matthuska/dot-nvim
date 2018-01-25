@@ -30,7 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'jgdavey/tslime.vim'
 Plug 'scrooloose/nerdtree'
 "Plug 'scrooloose/syntastic'
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
@@ -38,6 +38,8 @@ Plug 'dpelle/vim-LanguageTool'
 Plug 'airblade/vim-gitgutter'
 " Simple latex folding
 Plug 'matze/vim-tex-fold'
+" Python
+Plug 'w0rp/ale'
 call plug#end()
 
 "------------------------------------------------------------------------------
@@ -150,15 +152,15 @@ set backspace=indent,eol,start
 " rebuild .spl file
 function! SetSpellfile()
 	" Set the default location
-	setlocal spellfile=~/sync/homedir/vim/dict.en.utf-8.add
+	setlocal spellfile=~/.cache/nvim/dict.en.utf-8.add
 
 	if filereadable("./dict.en.utf-8.add")
 		setlocal spellfile=./dict.en.utf-8.add
 	elseif filereadable("../dict.en.utf-8.add")
 		setlocal spellfile=../dict.en.utf-8.add
-	elseif !filereadable($HOME."/sync/homedir/vim/dict.en.utf-8.add")
-		silent !mkdir ~/sync/homedir/vim/ > /dev/null 2>&1
-		silent !touch ~/sync/homedir/vim/dict.en.utf-8.add
+	elseif !filereadable($HOME."/.cache/nvim/dict.en.utf-8.add")
+		silent !mkdir -p ~/.cache/nvim/ > /dev/null 2>&1
+		silent !touch ~/.cache/nvim/dict.en.utf-8.add
 	endif
 
 endfunction
@@ -230,6 +232,10 @@ augroup myvimrc
     au BufWritePost init.vim,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif | AirlineRefresh | AirlineRefresh
 augroup END
 
+" Color 80th column
+set textwidth=80
+set colorcolumn=+1
+
 " --------------------------------------------------------------------------
 " Filetype specific settings
 
@@ -244,7 +250,7 @@ endfun
 
 " Various autocommands
 autocmd FileType c,cpp set ts=4
-autocmd FileType c,cpp,java,php,ruby,python,r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,php,ruby,python,r,snakemake autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
@@ -254,3 +260,8 @@ autocmd FileType tex set spell
 autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C ..; fi'
 " yaml files were being indented with 8 spaces, should be 2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Crazy settings for python indentation using tabs
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+autocmd FileType python set noet ci pi sts=0 sw=8 ts=8
+
