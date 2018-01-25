@@ -67,3 +67,18 @@ snippet item
 	\begin{itemize}
 		\item ${1}
 	\end{itemize}
+
+snippet foreach
+	% Make sure to add this package to the preamble
+	% \usepackage{pgffor}
+	\foreach \x in {1,...,${1}} {%
+		\includegraphics<\x>[width=\textwidth,height=0.0\paperheight,keepaspectratio]{${2}-\x.${3}}%
+	}
+
+snippet code
+	% Don't forget to add \usepackage{listings} to preamble
+	\begin{frame}[fragile]
+		\begin{lstlistings}
+			${1}
+		\end{lstlistings}
+	\end{frame}
