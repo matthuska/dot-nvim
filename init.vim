@@ -38,6 +38,8 @@ Plug 'dpelle/vim-LanguageTool'
 Plug 'airblade/vim-gitgutter'
 " Simple latex folding
 Plug 'matze/vim-tex-fold'
+" Sublime Text-style minimap with :Minimap
+Plug 'severin-lemaignan/vim-minimap'
 " Python
 Plug 'w0rp/ale'
 call plug#end()
