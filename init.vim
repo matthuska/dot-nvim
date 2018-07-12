@@ -233,8 +233,8 @@ augroup myvimrc
 augroup END
 
 " Color 80th column
-set textwidth=80
-set colorcolumn=+1
+"set textwidth=79
+"set colorcolumn=+1
 
 " --------------------------------------------------------------------------
 " Filetype specific settings
@@ -260,8 +260,15 @@ autocmd FileType tex set spell
 autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C ..; fi'
 " yaml files were being indented with 8 spaces, should be 2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType snakemake setlocal textwidth=0 wrapmargin=0
 
 " Crazy settings for python indentation using tabs
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-autocmd FileType python set noet ci pi sts=0 sw=8 ts=8
+" autocmd FileType python set noet ci pi sts=0 sw=8 ts=8
+
+" Put this in vimrc or a plugin file of your own.
+" After this is configured, :ALEFix will try and fix your python code with yapf
+let g:ale_fixers = {
+\   'python': ['yapf', 'isort'],
+\}
 

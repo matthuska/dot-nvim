@@ -11,3 +11,17 @@ snippet foreachi
 	for ${1} in "${!${2}[@]}"; do
 		${3:#statements}
 	done
+
+snippet qsub
+	#$ -V
+	#$ -j y
+	#$ -o logs
+	#$ -r yes
+	#$ -cwd
+	#$ -S /bin/bash
+	#$ -P medium
+	##$ -pe smp 20
+	#$ -l h_vmem=40g
+	#$ -l h_rt=48:00:00
+	#$ -m bea
+	#$ -M matthew.huska@mdc-berlin.de
