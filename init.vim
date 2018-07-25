@@ -19,11 +19,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif    
 
 call plug#begin()
+Plug 'mhinz/vim-startify'
 Plug 'msanders/snipmate.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'bling/vim-airline'
-Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
+"Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
 Plug 'jalvesaq/VimCom'
 Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
@@ -42,6 +43,14 @@ Plug 'matze/vim-tex-fold'
 Plug 'severin-lemaignan/vim-minimap'
 " Python
 Plug 'w0rp/ale'
+Plug 'davidhalter/jedi-vim'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'zchee/deoplete-jedi'
+"Plug 'davidhalter/'
+
+" Color scheme
+Plug 'mhinz/vim-janah'
+
 call plug#end()
 
 "------------------------------------------------------------------------------
@@ -51,6 +60,13 @@ filetype on
 
 "------------------------------------------------------------------------------
 " Plugin setup
+
+" vim-janah: Syntax coloring
+autocmd ColorScheme janah highlight Normal ctermbg=235
+colorscheme janah
+
+" Deoplete (broken for now)
+"let g:deoplete#enable_at_startup = 1
 
 " Tslime
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
