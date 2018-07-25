@@ -254,6 +254,10 @@ augroup END
 "set textwidth=79
 "set colorcolumn=+1
 
+" Hide gutters
+map <f7> :GitGutterDisable<cr> :ALEDisable<cr>
+map <f8> :GitGutterEnable<cr> :ALEEnable<cr>
+
 " --------------------------------------------------------------------------
 " Filetype specific settings
 
