@@ -250,13 +250,13 @@ augroup myvimrc
     au BufWritePost init.vim,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif | AirlineRefresh | AirlineRefresh
 augroup END
 
-" Color 80th column
-"set textwidth=79
-"set colorcolumn=+1
-
 " Hide gutters
 map <f7> :GitGutterDisable<cr> :ALEDisable<cr>
 map <f8> :GitGutterEnable<cr> :ALEEnable<cr>
+
+" Disable wrapping
+"set textwidth=80
+"set colorcolumn=+1
 
 " --------------------------------------------------------------------------
 " Filetype specific settings
