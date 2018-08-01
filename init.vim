@@ -43,10 +43,18 @@ Plug 'matze/vim-tex-fold'
 Plug 'severin-lemaignan/vim-minimap'
 " Python
 Plug 'w0rp/ale'
-Plug 'davidhalter/jedi-vim'
+
+if exists("g:loaded_python_provider")
+  Plug 'davidhalter/jedi-vim'
+endif
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-jedi'
 "Plug 'davidhalter/'
+" Not easy to get going with python
+"Plug 'majutsushi/tagbar'
+"
+" Plugins to look at later
+" Plug 'idanarye/vim-vebugger'
 
 " Color scheme
 Plug 'mhinz/vim-janah'
