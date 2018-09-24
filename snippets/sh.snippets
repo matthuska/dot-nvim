@@ -25,3 +25,7 @@ snippet qsub
 	#$ -l h_rt=48:00:00
 	#$ -m bea
 	#$ -M matthew.huska@mdc-berlin.de
+
+snippet var
+	RESULT=${VAR:-$DEFAULT}
+
