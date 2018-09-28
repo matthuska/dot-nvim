@@ -21,7 +21,7 @@ endif
 call plug#begin()
 Plug 'mhinz/vim-startify'
 Plug 'msanders/snipmate.vim'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'bling/vim-airline'
 "Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
