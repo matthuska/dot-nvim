@@ -292,6 +292,10 @@ autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType snakemake setlocal textwidth=0 wrapmargin=0
 
+" Recognize Snakemake files
+au BufNewFile,BufRead Snakefile set syntax=snakemake
+au BufNewFile,BufRead *.smk set syntax=snakemake
+
 " Crazy settings for python indentation using tabs
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " autocmd FileType python set noet ci pi sts=0 sw=8 ts=8
