@@ -290,7 +290,7 @@ autocmd FileType tex set spell
 autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C ..; fi'
 " yaml files were being indented with 8 spaces, should be 2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType snakemake setlocal textwidth=0 wrapmargin=0
+autocmd FileType snakemake setlocal textwidth=0 wrapmargin=0 ts=4 sts=4 sw=4 expandtab
 
 " Recognize Snakemake files
 au BufNewFile,BufRead Snakefile set syntax=snakemake
