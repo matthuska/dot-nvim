@@ -27,6 +27,7 @@ source $VIMRUNTIME/syntax/python.vim
 " subworkflow, touch etc
 "
 " rule       = "rule" (identifier | "") ":" ruleparams
+" rule       = "checkpoint" (identifier | "") ":" ruleparams
 " include    = "include:" stringliteral
 " workdir    = "workdir:" stringliteral
 " ni         = NEWLINE INDENT
@@ -46,14 +47,14 @@ syn keyword pythonStatement	ruleorder localrules configfile
 syn keyword pythonStatement	touch protected temp conda
 syn keyword pythonStatement	input output params message threads resources
 syn keyword pythonStatement	version run shell benchmark snakefile log
-syn keyword pythonStatement	rule subworkflow nextgroup=pythonFunction skipwhite
+syn keyword pythonStatement	rule checkpoint subworkflow nextgroup=pythonFunction skipwhite
 
 " similar to special def and class treatment from python.vim, except
 " parenthetical part of def and class
 syn match   pythonFunction
-      \ "\%(\%(rule\s\|subworkflow\s\)\s*\)\@<=\h*" contained
+      \ "\%(\%(checkpoint\s\|rule\s\|subworkflow\s\)\s*\)\@<=\h*" contained
 
-syn sync match pythonSync grouphere NONE "^\s*\%(rule\|subworkflow\)\s\+\h\w*\s*"
+syn sync match pythonSync grouphere NONE "^\s*\%(checkpoint\s\|rule\|subworkflow\)\s\+\h\w*\s*"
 
 let b:current_syntax = "snakemake"
 
