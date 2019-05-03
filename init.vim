@@ -30,8 +30,6 @@ Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
 Plug 'jgdavey/tslime.vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'scrooloose/syntastic'
-"Plug 'neomake/neomake'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
@@ -47,11 +45,8 @@ Plug 'w0rp/ale'
 if exists("g:loaded_python_provider")
   Plug 'davidhalter/jedi-vim'
 endif
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-jedi'
-"Plug 'davidhalter/'
 " Not easy to get going with python
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 "
 " Plugins to look at later
 " Plug 'idanarye/vim-vebugger'
@@ -62,9 +57,9 @@ Plug 'mhinz/vim-janah'
 call plug#end()
 
 "------------------------------------------------------------------------------
-" Misc
-syntax on
+" Misc (http://vim.1045645.n5.nabble.com/Autocommand-vs-ftplugin-td5723140.html)
 filetype on
+syntax on
 
 "------------------------------------------------------------------------------
 " Plugin setup
@@ -73,33 +68,10 @@ filetype on
 autocmd ColorScheme janah highlight Normal ctermbg=235
 colorscheme janah
 
-" Deoplete (broken for now)
-"let g:deoplete#enable_at_startup = 1
-
 " Tslime
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
-
-" Syntastic (R)
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Disable autocheck on save
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
-"nnoremap <leader>sc :SyntasticCheck<CR>
-"let g:syntastic_r_lint_styles = 'list(spacing.indentation.notabs, spacing.indentation.evenindent, spacing.spaceaftercomma, spacing.spacearoundinfix, spacing.spacearoundequals)'
-let g:syntastic_enable_r_lintr_checker = 1
-"let g:syntastic_r_checkers = 1
-let g:syntastic_r_checkers = ['lintr']
-" Disable the object checker because it executes code. Not safe for when I
-" open untrested code
-let g:syntastic_r_lintr_linters = "with_defaults(object_usage_linter = NULL, object_camel_case_linter = NULL)"
 
 " Ctrl-p
 "let g:ctrlp_user_command = 'find %s -type f ! -name "*.pdf" ! -name "*.'
@@ -119,10 +91,13 @@ if executable("ag")
 	let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
 endif
 
-" snipmate rebind to not stomp on YouCompleteMe
-"let g:snips_trigger_key = '<C-j>'
-let g:ycm_key_list_select_completion = []
-let g:loaded_youcompleteme = 1
+" Settings for Tagbar symbol browser
+let g:tagbar_left=1
+
+"" snipmate rebind to not stomp on YouCompleteMe
+""let g:snips_trigger_key = '<C-j>'
+"let g:ycm_key_list_select_completion = []
+"let g:loaded_youcompleteme = 1
 
 " Snippets
 " Convenience functions for snippts. F12 to edit snippets for the current
@@ -152,8 +127,6 @@ let g:languagetool_disable_rules='DASH_RULE,WHITESPACE_RULE,EN_QUOTES,CURRENCY,E
 
 "------------------------------------------------------------------------------
 " UI Settings
-
-"colorscheme desert
 
 " Make status line (airline) display all of the time
 set laststatus=2
@@ -188,7 +161,6 @@ function! SetSpellfile()
 		silent !mkdir -p ~/.cache/nvim/ > /dev/null 2>&1
 		silent !touch ~/.cache/nvim/dict.en.utf-8.add
 	endif
-
 endfunction
 autocmd BufNewFile,BufRead * :call SetSpellfile()
 
@@ -232,9 +204,9 @@ set incsearch " ...dynamically as they are typed.
 
 " Highlight matching braces with an underline
 " http://design.liberta.co.za/articles/customizing-disabling-vim-matching-parenthesis-highlighting/
-hi MatchParen cterm=underline,bold ctermbg=none ctermfg=none 
-hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none 
-hi Search cterm=bold ctermbg=DarkGrey ctermfg=none 
+highlight MatchParen cterm=underline,bold ctermbg=none ctermfg=none 
+highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=none 
+highlight Search cterm=bold ctermbg=DarkGrey ctermfg=none 
 
 " current directory is always matching the
 " content of the active window
@@ -262,10 +234,6 @@ augroup END
 map <f7> :GitGutterDisable<cr> :ALEDisable<cr>
 map <f8> :GitGutterEnable<cr> :ALEEnable<cr>
 
-" Disable wrapping
-"set textwidth=80
-"set colorcolumn=+1
-
 " --------------------------------------------------------------------------
 " Filetype specific settings
 
@@ -281,7 +249,7 @@ endfun
 " Various autocommands
 autocmd FileType c,cpp set ts=4
 autocmd FileType c,cpp,java,php,ruby,python,r,snakemake autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-autocmd FileType xhtml,html,css set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType xhtml,html,css set expandtab tabstop=8 shiftwidth=4 softtabstop=4
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
 autocmd FileType markdown set autoindent spell
@@ -291,6 +259,7 @@ autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C
 " yaml files were being indented with 8 spaces, should be 2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType snakemake setlocal textwidth=0 wrapmargin=0 ts=4 sts=4 sw=4 expandtab
+autocmd FileType python setlocal textwidth=88 expandtab tabstop=8 shiftwidth=4 softtabstop=4
 
 " Recognize Snakemake files
 au BufNewFile,BufRead Snakefile set syntax=snakemake
@@ -302,7 +271,6 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your python code with yapf
-let g:ale_fixers = {
-\   'python': ['yapf', 'isort'],
-\}
-
+let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_linters = {'python': ['flake8', 'pylint']}
+"let g:ale_command_wrapper = 'conda activate py2dev && '
