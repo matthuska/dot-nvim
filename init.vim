@@ -231,8 +231,8 @@ augroup myvimrc
 augroup END
 
 " Hide gutters
-map <f7> :GitGutterDisable<cr> :ALEDisable<cr>
-map <f8> :GitGutterEnable<cr> :ALEEnable<cr>
+map <f7> :GitGutterToggle<cr> :ALEToggleBuffer<cr>
+map <f8> :TagbarToggle<cr>
 
 " --------------------------------------------------------------------------
 " Filetype specific settings
