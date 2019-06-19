@@ -233,6 +233,8 @@ augroup END
 " Hide gutters
 map <f7> :GitGutterToggle<cr> :ALEToggleBuffer<cr>
 map <f8> :TagbarToggle<cr>
+" Toggle hide commented lines (doesn't work properly)
+"map <f2> :hi! link Comment Comment
 
 " --------------------------------------------------------------------------
 " Filetype specific settings
@@ -271,6 +273,25 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your python code with yapf
-let g:ale_fixers = {'python': ['black', 'isort']}
+let g:ale_fixers = {'python': ['black', 'isort'], 'r': 'styler'}
+"let g:ale_fixers = {'python': ['black', 'isort']}
 let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
+"let g:ale_virtualenv_dir_names = []
 "let g:ale_command_wrapper = 'conda activate py2dev && '
+"
+" tagbar for R
+let g:tagbar_type_r = {
+    \ 'ctagstype' : 'r',
+    \ 'kinds'     : [
+        \ 'f:Functions',
+        \ 'g:GlobalVariables',
+        \ 'v:FunctionVariables',
+    \ ]
+\ }
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END

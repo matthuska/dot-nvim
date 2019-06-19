@@ -24,7 +24,8 @@ snippet args
 			make_option(c("-d", "--seed"), default=531,
 									help="Set the random seed at the beginning of the script")
 			)
-	args <- parse_args(OptionParser(option_list = option_list))
+	args <- parse_args(OptionParser(option_list = option_list),
+	                   convert_hyphens_to_underscores = FALSE))
 	conf <- args
 	conf$id <- substr(digest(args), 1, 8)
 	set.seed(args$seed)
