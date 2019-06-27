@@ -277,7 +277,7 @@ let g:ale_fixers = {'python': ['black', 'isort'], 'r': 'styler'}
 "let g:ale_fixers = {'python': ['black', 'isort']}
 let g:ale_linters = {'python': ['flake8', 'pylint']}
 let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
-"let g:ale_virtualenv_dir_names = []
+let g:ale_virtualenv_dir_names = []
 "let g:ale_command_wrapper = 'conda activate py2dev && '
 "
 " tagbar for R
