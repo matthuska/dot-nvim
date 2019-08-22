@@ -231,6 +231,8 @@ augroup myvimrc
 augroup END
 
 " Hide gutters
+"let g:ale_lint_on_enter=0
+let g:ale_enabled = 1
 map <f7> :GitGutterToggle<cr> :ALEToggleBuffer<cr>
 map <f8> :TagbarToggle<cr>
 " Toggle hide commented lines (doesn't work properly)

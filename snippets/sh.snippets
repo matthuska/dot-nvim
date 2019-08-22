@@ -29,3 +29,80 @@ snippet qsub
 snippet var
 	RESULT=${VAR:-$DEFAULT}
 
+snippet args
+	# Usage info
+	show_help() {
+	cat << EOF
+	Usage: ${0##*/} [-hv] [-f OUTFILE] [FILE]...
+	Do stuff with FILE and write the result to standard output. With no FILE
+	or when FILE is -, read standard input.
+	
+	    -h          display this help and exit
+	    -f OUTFILE  write the result to OUTFILE instead of standard output.
+	    -v          verbose mode. Can be used multiple times for increased
+	                verbosity.
+	EOF
+	}
+	
+	# Initialize our own variables:
+	output_file=""
+	verbose=0
+	
+	OPTIND=1
+	# Resetting OPTIND is necessary if getopts was used previously in the script.
+	# It is a good idea to make OPTIND local if you process options in a function.
+	
+	while :; do
+	    case $1 in
+		-h|-\?|--help)
+		    show_help    # Display a usage synopsis.
+		    exit
+		    ;;
+		-f|--file)       # Takes an option argument; ensure it has been specified.
+		    if [ "$2" ]; then
+			file=$2
+			shift
+		    else
+			die 'ERROR: "--file" requires a non-empty option argument.'
+		    fi
+		    ;;
+		--file=?*)
+		    file=${1#*=} # Delete everything up to "=" and assign the remainder.
+		    ;;
+		--file=)         # Handle the case of an empty --file=
+		    die 'ERROR: "--file" requires a non-empty option argument.'
+		    ;;
+		-v|--verbose)
+		    verbose=$((verbose + 1))  # Each -v adds 1 to verbosity.
+		    ;;
+		--)              # End of all options.
+		    shift
+		    break
+		    ;;
+		-?*)
+		    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+		    ;;
+		*)               # Default case: No more options, so break out of the loop.
+		    break
+	    esac
+
+	    shift
+	done
+
+	#while getopts hvf: opt; do
+	#    case $opt in
+	#        h)
+	#            show_help
+	#            exit 0
+	#            ;;
+	#        v)  verbose=$((verbose+1))
+	#            ;;
+	#        f)  output_file=$OPTARG
+	#            ;;
+	#        *)
+	#            show_help >&2
+	#            exit 1
+	#            ;;
+	#    esac
+	#done
+	#shift "$((OPTIND-1))"   # Discard the options and sentinel --
