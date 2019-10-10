@@ -232,7 +232,7 @@ augroup END
 
 " Hide gutters
 "let g:ale_lint_on_enter=0
-let g:ale_enabled = 1
+"let g:ale_enabled = 1
 map <f7> :GitGutterToggle<cr> :ALEToggleBuffer<cr>
 map <f8> :TagbarToggle<cr>
 " Toggle hide commented lines (doesn't work properly)
@@ -252,7 +252,7 @@ endfun
 
 " Various autocommands
 autocmd FileType c,cpp set ts=4
-autocmd FileType c,cpp,java,php,ruby,python,r,snakemake autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+"autocmd FileType c,cpp,java,php,ruby,python,r,snakemake autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType xhtml,html,css set expandtab tabstop=8 shiftwidth=4 softtabstop=4
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
@@ -263,7 +263,7 @@ autocmd Filetype tex let &makeprg = 'if [ -f Makefile ]; then make; else make -C
 " yaml files were being indented with 8 spaces, should be 2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType snakemake setlocal textwidth=0 wrapmargin=0 ts=4 sts=4 sw=4 expandtab
-autocmd FileType python setlocal textwidth=88 expandtab tabstop=8 shiftwidth=4 softtabstop=4
+"autocmd FileType python setlocal textwidth=88 expandtab tabstop=8 shiftwidth=4 softtabstop=4
 
 " Recognize Snakemake files
 au BufNewFile,BufRead Snakefile set syntax=snakemake
@@ -280,6 +280,7 @@ let g:ale_fixers = {'python': ['black', 'isort'], 'r': 'styler'}
 let g:ale_linters = {'python': ['flake8', 'pylint']}
 let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
 let g:ale_virtualenv_dir_names = []
+let g:ale_pattern_options = {'\.R$': {'ale_enabled': 0}}
 "let g:ale_command_wrapper = 'conda activate py2dev && '
 "
 " tagbar for R
