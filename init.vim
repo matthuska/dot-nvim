@@ -73,6 +73,11 @@ vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
 
+" fugitive
+command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+" git grep the word under the cursor
+nnoremap <C-g> :Ggr <cword><CR>
+
 " Ctrl-p
 "let g:ctrlp_user_command = 'find %s -type f ! -name "*.pdf" ! -name "*.'
 " Search most recently used files first
