@@ -24,7 +24,6 @@ Plug 'msanders/snipmate.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'bling/vim-airline'
-"Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
 Plug 'jalvesaq/VimCom'
 Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
@@ -40,7 +39,7 @@ Plug 'matze/vim-tex-fold'
 " Sublime Text-style minimap with :Minimap
 Plug 'severin-lemaignan/vim-minimap'
 " Python
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 if exists("g:loaded_python_provider")
   Plug 'davidhalter/jedi-vim'
@@ -50,6 +49,8 @@ Plug 'majutsushi/tagbar'
 "
 " Plugins to look at later
 " Plug 'idanarye/vim-vebugger'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
 
 " Color scheme
 Plug 'mhinz/vim-janah'
@@ -238,7 +239,8 @@ augroup END
 " Hide gutters
 "let g:ale_lint_on_enter=0
 "let g:ale_enabled = 1
-map <f7> :GitGutterToggle<cr> :ALEToggleBuffer<cr>
+map <f4> :ALEToggleBuffer<cr>
+map <f7> :GitGutterToggle<cr>
 map <f8> :TagbarToggle<cr>
 " Toggle hide commented lines (doesn't work properly)
 "map <f2> :hi! link Comment Comment
@@ -276,16 +278,12 @@ au BufNewFile,BufRead *.smk set syntax=snakemake
 
 " Crazy settings for python indentation using tabs
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-" autocmd FileType python set noet ci pi sts=0 sw=8 ts=8
 
-" Put this in vimrc or a plugin file of your own.
-" After this is configured, :ALEFix will try and fix your python code with yapf
-let g:ale_fixers = {'python': ['black', 'isort'], 'r': 'styler'}
-"let g:ale_fixers = {'python': ['black', 'isort']}
-let g:ale_linters = {'python': ['flake8', 'pylint']}
+" --- ALE ---
 let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
-let g:ale_virtualenv_dir_names = []
-let g:ale_pattern_options = {'\.R$': {'ale_enabled': 0}}
+"let g:ale_virtualenv_dir_names = []
+let g:ale_pattern_options = {'\.R$': {'ale_enabled': 1}}
+let g:ale_sign_column_always = 1
 "let g:ale_command_wrapper = 'conda activate py2dev && '
 "
 " tagbar for R

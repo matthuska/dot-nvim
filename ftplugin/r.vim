@@ -3,8 +3,11 @@
 "
 " http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards
 
-set tabstop=4
-set shiftwidth=4
+let b:ale_fixers = ['styler']
+let b:ale_linters = ['lintr']
+
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " Auto-generate roxygen2 template
