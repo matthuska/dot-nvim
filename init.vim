@@ -38,8 +38,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'matze/vim-tex-fold'
 " Sublime Text-style minimap with :Minimap
 Plug 'severin-lemaignan/vim-minimap'
-" Python
 Plug 'dense-analysis/ale'
+Plug 'tpope/vim-unimpaired'
 
 if exists("g:loaded_python_provider")
   Plug 'davidhalter/jedi-vim'
@@ -279,12 +279,13 @@ au BufNewFile,BufRead *.smk set syntax=snakemake
 " Crazy settings for python indentation using tabs
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
-" --- ALE ---
-let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
-"let g:ale_virtualenv_dir_names = []
-let g:ale_pattern_options = {'\.R$': {'ale_enabled': 1}}
-let g:ale_sign_column_always = 1
-"let g:ale_command_wrapper = 'conda activate py2dev && '
+" " --- ALE ---
+let g:ale_r_lintr_options = 'with_defaults(line_length_linter = line_length_linter(120), multiple_dots_linter = NULL)'
+"let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
+" "let g:ale_virtualenv_dir_names = []
+" let g:ale_pattern_options = {'\.R$': {'ale_enabled': 1}}
+" let g:ale_sign_column_always = 1
+" "let g:ale_command_wrapper = 'conda activate py2dev && '
 "
 " tagbar for R
 let g:tagbar_type_r = {
