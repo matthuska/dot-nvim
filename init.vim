@@ -261,6 +261,7 @@ endfun
 autocmd FileType c,cpp set ts=4
 "autocmd FileType c,cpp,java,php,ruby,python,r,snakemake autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType xhtml,html,css set expandtab tabstop=8 shiftwidth=4 softtabstop=4
+autocmd FileType r autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType r set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.md,*.mkdn,*.markdown :set filetype=markdown
 autocmd FileType markdown set autoindent spell
