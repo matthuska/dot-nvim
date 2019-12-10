@@ -288,6 +288,8 @@ let g:ale_r_lintr_options = 'with_defaults(line_length_linter = line_length_lint
 " let g:ale_sign_column_always = 1
 " "let g:ale_command_wrapper = 'conda activate py2dev && '
 "
+let r_indent_align_args = 0
+"
 " tagbar for R
 let g:tagbar_type_r = {
     \ 'ctagstype' : 'r',
