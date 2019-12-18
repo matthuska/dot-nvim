@@ -281,7 +281,26 @@ au BufNewFile,BufRead *.smk set syntax=snakemake
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " " --- ALE ---
-let g:ale_r_lintr_options = 'with_defaults(line_length_linter = line_length_linter(120), multiple_dots_linter = NULL)'
+" > names(default_linters) for lintr
+" absolute_paths_linter
+" assignment_linter
+" camel_case_linter
+" closed_curly_linter
+" commas_linter
+" commented_code_linter
+" infix_spaces_linter
+" line_length_linter
+" multiple_dots_linter
+" no_tab_linter
+" object_length_linter
+" object_usage_linter
+" open_curly_linter
+" single_quotes_linter
+" spaces_inside_linter
+" spaces_left_parentheses_linter
+" trailing_blank_lines_linter
+" trailing_whitespace_linter
+let g:ale_r_lintr_options = 'with_defaults(line_length_linter = line_length_linter(120), multiple_dots_linter = NULL, commas_linter = NULL)'
 "let g:ale_r_lintr_options = 'with_defaults(no_tab_linter = NULL)'
 " "let g:ale_virtualenv_dir_names = []
 " let g:ale_pattern_options = {'\.R$': {'ale_enabled': 1}}
