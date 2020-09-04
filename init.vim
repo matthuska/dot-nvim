@@ -27,7 +27,7 @@ Plug 'bling/vim-airline'
 Plug 'jalvesaq/VimCom'
 Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
-Plug 'jgdavey/tslime.vim'
+"Plug 'jgdavey/tslime.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
@@ -49,13 +49,16 @@ Plug 'majutsushi/tagbar'
 "
 " Plugins to look at later
 " Plug 'idanarye/vim-vebugger'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'Valloric/YouCompleteMe', {'build' : {'unix' : 'git submodule update --init --recursive && python install.py'}}
 
 " Color scheme
 Plug 'mhinz/vim-janah'
 
 call plug#end()
+
+" External plugin settings
+source /home/huskam/.config/nvim/plug-config/coc.vim
 
 "------------------------------------------------------------------------------
 " Misc (http://vim.1045645.n5.nabble.com/Autocommand-vs-ftplugin-td5723140.html)
