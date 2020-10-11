@@ -57,7 +57,14 @@ Plug 'mhinz/vim-janah'
 
 call plug#end()
 
-" External plugin settings
+"------------------------------------------------------------------------------
+" coc - List plugins and external plugin settings
+let g:coc_global_extensions = [
+			\ 'coc-python',
+			\ 'coc-json',
+			\ 'coc-yaml',
+			\ 'coc-r-lsp'
+			\ ]
 runtime plug-config/coc.vim
 
 "------------------------------------------------------------------------------
