@@ -12,3 +12,27 @@ snippet skel
 	# Main body
 	if __name__ == '__main__':
 	    main()
+
+snippet args
+	import argparse
+	def main():
+	    parser = argparse.ArgumentParser(
+		formatter_class=argparse.ArgumentDefaultsHelpFormatter
+	    )
+	    parser.add_argument("--metadata", help="Per-sample metadata (csv format)")
+	    parser.add_argument("--outdir", help="Output directory for all output files")
+	    parser.add_argument(
+		"--seed", type=int, default=42, help="Random seed to make output reproducible"
+	    )
+	    parser.set_defaults(
+		metadata="../data/GISAIDgerman20200818/gisaid_hcov-19_2020_08_18_08.csv",
+		outdir="../output",
+	    )
+
+	    args = parser.parse_args()
+
+	    if not os.path.exists(args.outdir):
+		os.makedirs(args.outdir)
+
+	    np.random.seed(args.seed)
+	    random.seed(args.seed)
