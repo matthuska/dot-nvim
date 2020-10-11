@@ -58,7 +58,7 @@ Plug 'mhinz/vim-janah'
 call plug#end()
 
 " External plugin settings
-source /home/huskam/.config/nvim/plug-config/coc.vim
+runtime plug-config/coc.vim
 
 "------------------------------------------------------------------------------
 " Misc (http://vim.1045645.n5.nabble.com/Autocommand-vs-ftplugin-td5723140.html)
