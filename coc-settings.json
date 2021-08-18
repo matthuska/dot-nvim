@@ -1,0 +1,6 @@
+{
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["python", "r"],
+  "python.formatting.provider": "black",
+  "r.lsp.path": "/home/huskam/.conda/envs/rdev/bin/R"
+}
