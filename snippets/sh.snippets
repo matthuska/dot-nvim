@@ -1,4 +1,10 @@
 # #!/bin/bash
+snippet conda
+	# Set up conda itself, and activate env
+	CONDA_BASE=$(conda info --base)
+	source $CONDA_BASE/etc/profile.d/conda.sh
+	conda activate ${1}
+
 snippet array
 	${1}=( ${2} ${3} )
 	

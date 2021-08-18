@@ -29,21 +29,22 @@ Plug 'Shougo/vimproc.vim', {'build' : {'unix' : 'make -f make_unix.mak'}}
 Plug 'tpope/vim-fugitive'
 "Plug 'jgdavey/tslime.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'godlygeek/tabular'
 Plug 'dpelle/vim-LanguageTool'
 " Show changed lines in the gutter using git
 Plug 'airblade/vim-gitgutter'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
 " Simple latex folding
 Plug 'matze/vim-tex-fold'
 " Sublime Text-style minimap with :Minimap
 Plug 'severin-lemaignan/vim-minimap'
-Plug 'dense-analysis/ale'
+" Disabled in favour of COC
+"Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
 
-if exists("g:loaded_python_provider")
-  Plug 'davidhalter/jedi-vim'
-endif
+"if exists("g:loaded_python_provider")
+"  Plug 'davidhalter/jedi-vim'
+"endif
 " Not easy to get going with python
 Plug 'majutsushi/tagbar'
 "
@@ -61,11 +62,11 @@ call plug#end()
 " coc - List plugins and external plugin settings
 let g:coc_global_extensions = [
 			\ 'coc-python',
-			\ 'coc-json',
 			\ 'coc-yaml',
 			\ 'coc-r-lsp'
 			\ ]
 runtime plug-config/coc.vim
+"			\ 'coc-json',
 
 "------------------------------------------------------------------------------
 " Misc (http://vim.1045645.n5.nabble.com/Autocommand-vs-ftplugin-td5723140.html)
@@ -249,6 +250,9 @@ augroup END
 " Hide gutters
 "let g:ale_lint_on_enter=0
 "let g:ale_enabled = 1
+"map <f2> &foldlevel ? 'zM' :'zR'
+"map <f2> &foldlevel ? 'zM' :'zR'
+nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 map <f4> :ALEToggleBuffer<cr>
 map <f7> :GitGutterToggle<cr>
 map <f8> :TagbarToggle<cr>

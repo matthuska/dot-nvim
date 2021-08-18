@@ -18,7 +18,7 @@ snippet args
 
 	option_list <- list(
 			make_option(c("-o", "--organism"), default="mm",
-									help="Two letter organism identifier [default=hs]"),
+									help="Two letter organism identifier [default %default]"),
 			make_option(c("-j", "--cores"), default=40,
 									help="Number of processes to use"),
 			make_option(c("-d", "--seed"), default=531,
