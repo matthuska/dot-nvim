@@ -56,6 +56,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Color scheme
 Plug 'mhinz/vim-janah'
 
+" Syntax highlighting for Nextflow
+Plug 'LukeGoodsell/nextflow-vim'
+
 call plug#end()
 
 "------------------------------------------------------------------------------
