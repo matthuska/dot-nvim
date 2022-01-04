@@ -69,7 +69,6 @@ let g:coc_global_extensions = [
 			\ 'coc-r-lsp'
 			\ ]
 runtime plug-config/coc.vim
-"			\ 'coc-json',
 
 "------------------------------------------------------------------------------
 " Misc (http://vim.1045645.n5.nabble.com/Autocommand-vs-ftplugin-td5723140.html)

@@ -1,4 +1,7 @@
 # #!/bin/bash
+snippet #!
+	#!/usr/bin/env bash
+
 snippet conda
 	# Set up conda itself, and activate env
 	CONDA_BASE=$(conda info --base)
@@ -36,79 +39,73 @@ snippet var
 	RESULT=${VAR:-$DEFAULT}
 
 snippet args
-	# Usage info
-	show_help() {
-	cat << EOF
-	Usage: ${0##*/} [-hv] [-f OUTFILE] [FILE]...
-	Do stuff with FILE and write the result to standard output. With no FILE
-	or when FILE is -, read standard input.
-	
-	    -h          display this help and exit
-	    -f OUTFILE  write the result to OUTFILE instead of standard output.
-	    -v          verbose mode. Can be used multiple times for increased
-	                verbosity.
-	EOF
-	}
-	
-	# Initialize our own variables:
-	output_file=""
-	verbose=0
-	
-	OPTIND=1
-	# Resetting OPTIND is necessary if getopts was used previously in the script.
-	# It is a good idea to make OPTIND local if you process options in a function.
-	
-	while :; do
-	    case $1 in
-		-h|-\?|--help)
-		    show_help    # Display a usage synopsis.
-		    exit
+	#!/bin/bash
+	# origin: https://stackoverflow.com/a/29754866 (2021-11-30)
+	# More safety, by turning some bugs into errors.
+	# Without \`errexit\` you don’t need ! and can replace
+	# PIPESTATUS with a simple $?, but I don’t do that.
+	set -o errexit -o pipefail -o noclobber -o nounset
+
+	# -allow a command to fail with !’s side effect on errexit
+	# -use return value from ${PIPESTATUS[0]}, because ! hosed $?
+	! getopt --test > /dev/null 
+	if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
+	    echo 'I’m sorry, \`getopt --test\` failed in this environment.'
+	    exit 1
+	fi
+
+	OPTIONS=dfo:v
+	LONGOPTS=debug,force,output:,verbose
+
+	# -regarding ! and PIPESTATUS see above
+	# -temporarily store output to be able to check for errors
+	# -activate quoting/enhanced mode (e.g. by writing out “--options”)
+	# -pass arguments only via   -- "$@"   to separate them correctly
+	! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$${0:0}" -- "$@")
+	if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+	    # e.g. return value is 1
+	    #  then getopt has complained about wrong arguments to stdout
+	    exit 2
+	fi
+	# read getopt’s output this way to handle the quoting right:
+	eval set -- "$PARSED"
+
+	d=n f=n v=n outFile=-
+	# now enjoy the options in order and nicely split until we see --
+	while true; do
+	    case "$${1:1}" in
+		-d|--debug)
+		    d=y
+		    shift
 		    ;;
-		-f|--file)       # Takes an option argument; ensure it has been specified.
-		    if [ "$2" ]; then
-			file=$2
-			shift
-		    else
-			die 'ERROR: "--file" requires a non-empty option argument.'
-		    fi
-		    ;;
-		--file=?*)
-		    file=${1#*=} # Delete everything up to "=" and assign the remainder.
-		    ;;
-		--file=)         # Handle the case of an empty --file=
-		    die 'ERROR: "--file" requires a non-empty option argument.'
+		-f|--force)
+		    f=y
+		    shift
 		    ;;
 		-v|--verbose)
-		    verbose=$((verbose + 1))  # Each -v adds 1 to verbosity.
+		    v=y
+		    shift
 		    ;;
-		--)              # End of all options.
+		-o|--output)
+		    outFile="$${2:2}"
+		    shift 2
+		    ;;
+		--)
 		    shift
 		    break
 		    ;;
-		-?*)
-		    printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+		*)
+		    echo "Programming error"
+		    exit 3
 		    ;;
-		*)               # Default case: No more options, so break out of the loop.
-		    break
 	    esac
-
-	    shift
 	done
 
-	#while getopts hvf: opt; do
-	#    case $opt in
-	#        h)
-	#            show_help
-	#            exit 0
-	#            ;;
-	#        v)  verbose=$((verbose+1))
-	#            ;;
-	#        f)  output_file=$OPTARG
-	#            ;;
-	#        *)
-	#            show_help >&2
-	#            exit 1
-	#            ;;
-	#    esac
-	#done
-	#shift "$((OPTIND-1))"   # Discard the options and sentinel --
+	# handle non-option arguments
+	if [[ $# -ne 1 ]]; then
+	    echo "$${0:0}: A single input file is required."
+	    exit 4
+	fi
+
+	echo "verbose: $v, force: $f, debug: $d, in: $${1:1}, out: $outFile"
+
